@@ -1,7 +1,5 @@
 """ --- Day 1: Sonar Sweep --- """
 
-""" ---- PART ONE ---- """
-
 
 def measurement(listOfNumbers):
     countOfIncrease = 0
@@ -10,13 +8,17 @@ def measurement(listOfNumbers):
             countOfIncrease += 1
     return countOfIncrease
 
+
 def secondMeasurement(listOfNumbers):
     countOfIncrease = 0
     for index in range(1, len(listOfNumbers) - 2):
-        if (listOfNumbers[index - 1] + listOfNumbers[index] + listOfNumbers[index + 1]) <\
+        if (listOfNumbers[index - 1] + listOfNumbers[index] + listOfNumbers[index + 1]) < \
                 (listOfNumbers[index] + listOfNumbers[index + 1] + listOfNumbers[index + 2]):
             countOfIncrease += 1
     return countOfIncrease
+
+
+""" ---- PART ONE ---- """
 
 try:
     myList = []
@@ -29,4 +31,3 @@ except:
 """ ---- PART TWO ---- """
 
 print(f'Three measurements which are larger than the three previous measurements: {secondMeasurement(myList)}')
-
