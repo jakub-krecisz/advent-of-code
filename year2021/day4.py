@@ -13,9 +13,9 @@ def getScore(myList):
     myList.remove('')
     bingoList = getBingoList(myList)
     counter = [0 for _ in range(len(bingoList))]
-    for index in range(len(bingoList)):
-        for num in numbers:
-            if num in bingoList[index]:
+    for number in numbers:
+        for index in range(len(bingoList)):
+            if number in bingoList[index]:
                 counter[index] += 1
                 if counter[index] == 5:
                     return bingoList[index]
