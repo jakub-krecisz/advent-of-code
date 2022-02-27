@@ -6,17 +6,17 @@ def getBingoList(myList):
         correctedList.append(myList[i].split())
     correctedList.remove([])
     correctedList.remove([])
+    print(correctedList)
     finalList = []
     list = []
     for index in range(len(correctedList)):
-        if index % 5 == 0:
-            finalList.append(list)
-            list.clear()
         list.append(correctedList[index])
-    return finalList
+    print(list)
+
 
 def getResult(wonList, bingoList):
     result = 0
+
     wonList = correctList(wonList)
     bingoList = correctList(bingoList)
     for bingoListEl in bingoList:
@@ -34,6 +34,7 @@ def getScore(myList):
     numbers = myList[0].split(',')
     myList.remove('')
     bingoList = getBingoList(myList)
+    print(bingoList)
     counter = [[] for _ in range(len(bingoList)*5)]
     for groupIndex in range(len(bingoList)):
         for number in numbers:
