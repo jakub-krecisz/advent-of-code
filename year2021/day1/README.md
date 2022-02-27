@@ -1,82 +1,94 @@
-original source: [https://adventofcode.com/2021/day/4](https://adventofcode.com/2021/day/4)
-## --- Day 4: Giant Squid ---
-You're already almost 1.5km (almost a mile) below the surface of the ocean, already so deep that you can't see any sunlight. What you <em>can</em> see, however, is a giant squid that has attached itself to the outside of your submarine.
+original source: [https://adventofcode.com/2021/day/1](https://adventofcode.com/2021/day/1)
+## --- Day 1: Sonar Sweep ---
+You're minding your own business on a ship at sea when the overboard alarm goes off! You rush to see if you can help. Apparently, one of the Elves tripped and accidentally sent the sleigh keys flying into the ocean!
 
-Maybe it wants to play [bingo](https://en.wikipedia.org/wiki/Bingo_(American_version))?
+Before you know it, you're inside a submarine the Elves keep ready for situations like this. It's covered in Christmas lights (because of course it is), and it even has an experimental antenna that should be able to track the keys if you can boost its signal strength high enough; there's a little meter that indicates the antenna's signal strength by displaying 0-50 <em>stars</em>.
 
-Bingo is played on a set of boards each consisting of a 5x5 grid of numbers. Numbers are chosen at random, and the chosen number is <em>marked</em> on all boards on which it appears. (Numbers may not appear on all boards.) If all numbers in any row or any column of a board are marked, that board <em>wins</em>. (Diagonals don't count.)
+Your instincts tell you that in order to save Christmas, you'll need to get all <em>fifty stars</em> by December 25th.
 
-The submarine has a <em>bingo subsystem</em> to help passengers (currently, you and the giant squid) pass the time. It automatically generates a random order in which to draw numbers and a random set of boards (your puzzle input). For example:
+Collect stars by solving puzzles.  Two puzzles will be made available on each day in the Advent calendar; the second puzzle is unlocked when you complete the first.  Each puzzle grants <em>one star</em>. Good luck!
+
+As the submarine drops below the surface of the ocean, it automatically performs a sonar sweep of the nearby sea floor. On a small screen, the sonar sweep report (your puzzle input) appears: each line is a measurement of the sea floor depth as the sweep looks further and further away from the submarine.
+
+For example, suppose you had the following report:
 
 <pre>
-<code>7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
-
-22 13 17 11  0
- 8  2 23  4 24
-21  9 14 16  7
- 6 10  3 18  5
- 1 12 20 15 19
-
- 3 15  0  2 22
- 9 18 13 17  5
-19  8  7 25 23
-20 11 10 24  4
-14 21 16 12  6
-
-14 21 17 24  4
-10 16 15  9 19
-18  8 23 26 20
-22 11 13  6  5
- 2  0 12  3  7
+<code>199
+200
+208
+210
+200
+207
+240
+269
+260
+263
 </code>
 </pre>
 
-After the first five numbers are drawn (<code>7</code>, <code>4</code>, <code>9</code>, <code>5</code>, and <code>11</code>), there are no winners, but the boards are marked as follows (shown here adjacent to each other to save space):
+This report indicates that, scanning outward from the submarine, the sonar sweep found depths of <code>199</code>, <code>200</code>, <code>208</code>, <code>210</code>, and so on.
+
+The first order of business is to figure out how quickly the depth increases, just so you know what you're dealing with - you never know if the keys will get carried into deeper water by an ocean current or a fish or something.
+
+To do this, count <em>the number of times a depth measurement increases</em> from the previous measurement. (There is no measurement before the first measurement.) In the example above, the changes are as follows:
 
 <pre>
-<code>22 13 17 <em>11</em>  0         3 15  0  2 22        14 21 17 24  <em>4</em>
- 8  2 23  <em>4</em> 24         <em>9</em> 18 13 17  <em>5</em>        10 16 15  <em>9</em> 19
-21  <em>9</em> 14 16  <em>7</em>        19  8  <em>7</em> 25 23        18  8 23 26 20
- 6 10  3 18  <em>5</em>        20 <em>11</em> 10 24  <em>4</em>        22 <em>11</em> 13  6  <em>5</em>
- 1 12 20 15 19        14 21 16 12  6         2  0 12  3  <em>7</em>
+<code>199 (N/A - no previous measurement)
+200 (<em>increased</em>)
+208 (<em>increased</em>)
+210 (<em>increased</em>)
+200 (decreased)
+207 (<em>increased</em>)
+240 (<em>increased</em>)
+269 (<em>increased</em>)
+260 (decreased)
+263 (<em>increased</em>)
 </code>
 </pre>
 
-After the next six numbers are drawn (<code>17</code>, <code>23</code>, <code>2</code>, <code>0</code>, <code>14</code>, and <code>21</code>), there are still no winners:
+In this example, there are <em><code>7</code></em> measurements that are larger than the previous measurement.
 
-<pre>
-<code>22 13 <em>17</em> <em>11</em>  <em>0</em>         3 15  <em>0</em>  <em>2</em> 22        <em>14</em> <em>21</em> <em>17</em> 24  <em>4</em>
- 8  <em>2</em> <em>23</em>  <em>4</em> 24         <em>9</em> 18 13 <em>17</em>  <em>5</em>        10 16 15  <em>9</em> 19
-<em>21</em>  <em>9</em> <em>14</em> 16  <em>7</em>        19  8  <em>7</em> 25 <em>23</em>        18  8 <em>23</em> 26 20
- 6 10  3 18  <em>5</em>        20 <em>11</em> 10 24  <em>4</em>        22 <em>11</em> 13  6  <em>5</em>
- 1 12 20 15 19        <em>14</em> <em>21</em> 16 12  6         <em>2</em>  <em>0</em> 12  3  <em>7</em>
-</code>
-</pre>
-
-Finally, <code>24</code> is drawn:
-
-<pre>
-<code>22 13 <em>17</em> <em>11</em>  <em>0</em>         3 15  <em>0</em>  <em>2</em> 22        <em>14</em> <em>21</em> <em>17</em> <em>24</em>  <em>4</em>
- 8  <em>2</em> <em>23</em>  <em>4</em> <em>24</em>         <em>9</em> 18 13 <em>17</em>  <em>5</em>        10 16 15  <em>9</em> 19
-<em>21</em>  <em>9</em> <em>14</em> 16  <em>7</em>        19  8  <em>7</em> 25 <em>23</em>        18  8 <em>23</em> 26 20
- 6 10  3 18  <em>5</em>        20 <em>11</em> 10 <em>24</em>  <em>4</em>        22 <em>11</em> 13  6  <em>5</em>
- 1 12 20 15 19        <em>14</em> <em>21</em> 16 12  6         <em>2</em>  <em>0</em> 12  3  <em>7</em>
-</code>
-</pre>
-
-At this point, the third board <em>wins</em> because it has at least one complete row or column of marked numbers (in this case, the entire top row is marked: <code><em>14 21 17 24  4</em></code>).
-
-The <em>score</em> of the winning board can now be calculated. Start by finding the <em>sum of all unmarked numbers</em> on that board; in this case, the sum is <code>188</code>. Then, multiply that sum by <em>the number that was just called</em> when the board won, <code>24</code>, to get the final score, <code>188 * 24 = <em>4512</em></code>.
-
-To guarantee victory against the giant squid, figure out which board will win first. <em>What will your final score be if you choose that board?</em>
+<em>How many measurements are larger than the previous measurement?</em>
 
 
 ## --- Part Two ---
-On the other hand, it might be wise to try a different strategy: let the giant squid win.
+Considering every single measurement isn't as useful as you expected: there's just too much noise in the data.
 
-You aren't sure how many bingo boards a giant squid could play at once, so rather than waste time counting its arms, the safe thing to do is to <em>figure out which board will win last</em> and choose that one. That way, no matter which boards it picks, it will win for sure.
+Instead, consider sums of a <em>three-measurement sliding window</em>.  Again considering the above example:
 
-In the above example, the second board is the last to win, which happens after <code>13</code> is eventually called and its middle column is completely marked. If you were to keep playing until this point, the second board would have a sum of unmarked numbers equal to <code>148</code> for a final score of <code>148 * 13 = <em>1924</em></code>.
+<pre>
+<code>199  A      
+200  A B    
+208  A B C  
+210    B C D
+200  E   C D
+207  E F   D
+240  E F G  
+269    F G H
+260      G H
+263        H
+</code>
+</pre>
 
-Figure out which board will win last. <em>Once it wins, what would its final score be?</em>
+Start by comparing the first and second three-measurement windows. The measurements in the first window are marked <code>A</code> (<code>199</code>, <code>200</code>, <code>208</code>); their sum is <code>199 + 200 + 208 = 607</code>. The second window is marked <code>B</code> (<code>200</code>, <code>208</code>, <code>210</code>); its sum is <code>618</code>. The sum of measurements in the second window is larger than the sum of the first, so this first comparison <em>increased</em>.
+
+Your goal now is to count <em>the number of times the sum of measurements in this sliding window increases</em> from the previous sum. So, compare <code>A</code> with <code>B</code>, then compare <code>B</code> with <code>C</code>, then <code>C</code> with <code>D</code>, and so on. Stop when there aren't enough measurements left to create a new three-measurement sum.
+
+In the above example, the sum of each three-measurement window is as follows:
+
+<pre>
+<code>A: 607 (N/A - no previous sum)
+B: 618 (<em>increased</em>)
+C: 618 (no change)
+D: 617 (decreased)
+E: 647 (<em>increased</em>)
+F: 716 (<em>increased</em>)
+G: 769 (<em>increased</em>)
+H: 792 (<em>increased</em>)
+</code>
+</pre>
+
+In this example, there are <em><code>5</code></em> sums that are larger than the previous sum.
+
+Consider sums of a three-measurement sliding window. <em>How many sums are larger than the previous sum?</em>
 
