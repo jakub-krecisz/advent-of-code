@@ -1,5 +1,5 @@
-# advent-of-code
-Annual challenge for coders. It is an advent calendar for developers with daily tasks to solve.
+# Advent of Code!
+Advent of code is an annual 'festival' for programmers. It consists in the fact that every day you get more and more difficult challenges (there are as many challenges as Advent days x 2). It is great fun, you can compete with others and learn a lot new.
 
 </n>
 
