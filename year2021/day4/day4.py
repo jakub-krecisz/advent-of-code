@@ -4,14 +4,9 @@ def getBingoList(myList):
     correctedList = []
     for i in range(1, len(myList)):
         correctedList.append(myList[i].split())
-    correctedList.remove([])
-    correctedList.remove([])
-    print(correctedList)
-    finalList = []
-    list = []
-    for index in range(len(correctedList)):
-        list.append(correctedList[index])
-    print(list)
+
+    return correctedList
+
 
 
 def getResult(wonList, bingoList):
