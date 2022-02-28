@@ -36,14 +36,14 @@ def getScore(myList):
     numbers = myList[0].split(',')
     myList.remove('')
     bingoList = getBingoList(myList)
-    counter = [[] for _ in range(len(bingoList) * 5)]
-    for groupIndex in range(len(bingoList)):
-        for number in numbers:
+    counter = [[[], [], [], [], []] for _ in range(len(bingoList))]
+    for number in numbers:
+        for groupIndex in range(len(bingoList[0])):
             for index in range(len(bingoList[groupIndex])):
                 if number in bingoList[groupIndex][index]:
-                    counter[index].append(number)
-                    if len(counter[index]) == 5:
-                        return int(getResult(counter, bingoList[groupIndex])) * int(number)
+                    counter[groupIndex][index].append(number)
+                    if len(counter[groupIndex][index]) == 5:
+                        return int(getResult(counter[groupIndex], bingoList[groupIndex])) * int(number)
 
 
 try:
