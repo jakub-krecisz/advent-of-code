@@ -18,16 +18,15 @@ def secondMeasurement(listOfNumbers):
     return countOfIncrease
 
 
-""" ---- PART ONE ---- """
 
-try:
-    myList = []
-    while True:
-        myList.append(int(input()))
-except:
-    print(f'Measurements which are larger than the previous one: {measurement(myList)}')
+if __name__ == '__main__':
+    try:
+        myList = []
+        while True:
+            myList.append(int(input()))
+    except:
+        """ ---- PART ONE ---- """
+        print(f'Measurements which are larger than the previous one: {measurement(myList)}')
 
-
-""" ---- PART TWO ---- """
-
-print(f'Three measurements which are larger than the three previous measurements: {secondMeasurement(myList)}')
+        """ ---- PART TWO ---- """
+        print(f'Three measurements which are larger than the three previous measurements: {secondMeasurement(myList)}')
