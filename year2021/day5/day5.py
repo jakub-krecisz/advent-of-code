@@ -28,6 +28,21 @@ def fillCross(cross, coords):
         elif coordinate[1] == coordinate[3]:
             for xIndex in range(min(coordinate[0], coordinate[2]), max(coordinate[0], coordinate[2]) + 1):
                 cross[coordinate[1]][xIndex] += 1
+        elif coordinate[0] == coordinate[1] and coordinate[2] == coordinate[3]:
+            for coord in range(min(coordinate[0], coordinate[2]), max(coordinate[0], coordinate[2])):
+                cross[coord][coord] += 1
+        elif coordinate[0] == coordinate[3] and coordinate[1] == coordinate[2]:
+            y = max(coordinate[0], coordinate[1])
+            for x in range(min(coordinate[0], coordinate[1]), y + 1):
+                cross[y][x] += 1
+                y -= 1
+        elif coordinate[0] - coordinate[2] == coordinate[1] - coordinate[3]:
+            x = min(coordinate[0], coordinate[2])
+            y = min(coordinate[1], coordinate[3])
+            for xCoord in range(x, max(coordinate[0], coordinate[2]) + 1):
+                cross[y][xCoord] += 1
+                y += 1
+
     return cross
 
 
@@ -35,10 +50,12 @@ def getNumOfPoints(myList):
     myList = correctList(myList)
     cross = getCross(myList)
     cross = fillCross(cross, myList)
+    for el in cross:
+        print(el)
     counter = 0
     for groupIndex in range(len(cross)):
         for index in range(len(cross[groupIndex])):
-            if cross[groupIndex][index] >=2 :
+            if cross[groupIndex][index] >= 2:
                 counter += 1
     return counter
 
