@@ -20,7 +20,7 @@ def secondMultiply(myList):
         toListEl = el.split()
         if toListEl[0] == 'forward':
             horizontalPos += int(toListEl[1])
-            depth += int(toListEl[1])*aim
+            depth += int(toListEl[1]) * aim
         elif toListEl[0] == 'down':
             aim += int(toListEl[1])
         else:
@@ -28,15 +28,14 @@ def secondMultiply(myList):
     return horizontalPos * depth
 
 
-""" ---- PART ONE ---- """
+if __name__ == '__main__':
+    try:
+        myList = []
+        while True:
+            myList.append(input())
+    except:
+        """ ---- PART ONE ---- """
+        print(f'The result of multiplying horizontal position by depth is: {multiply(myList)}')
 
-try:
-    myList = []
-    while True:
-        myList.append(input())
-except:
-    print(f'The result of multiplying horizontal position by depth is: {multiply(myList)}')
-
-""" ---- PART TWO ---- """
-
-print(f'The second result of multiplying horizontal position by depth is: {secondMultiply(myList)}')
+        """ ---- PART TWO ---- """
+        print(f'The second result of multiplying horizontal position by depth is: {secondMultiply(myList)}')

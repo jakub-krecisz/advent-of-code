@@ -1,4 +1,3 @@
-original source: [https://adventofcode.com/2021/day/2](https://adventofcode.com/2021/day/2)
 ## --- Day 2: Dive! ---
 Now, you need to figure out how to pilot this thing.
 
@@ -67,3 +66,4 @@ After following these new instructions, you would have a horizontal position of 
 
 Using this new interpretation of the commands, calculate the horizontal position and depth you would have after following the planned course. <em>What do you get if you multiply your final horizontal position by your final depth?</em>
 
+original source: [https://adventofcode.com/2021/day/2](https://adventofcode.com/2021/day/2)
