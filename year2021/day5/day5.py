@@ -29,7 +29,7 @@ def fillCross(cross, coords):
             for xIndex in range(min(coordinate[0], coordinate[2]), max(coordinate[0], coordinate[2]) + 1):
                 cross[coordinate[1]][xIndex] += 1
         elif coordinate[0] == coordinate[1] and coordinate[2] == coordinate[3]:
-            for coord in range(min(coordinate[0], coordinate[2]), max(coordinate[0], coordinate[2])):
+            for coord in range(min(coordinate[0], coordinate[2]), max(coordinate[0], coordinate[2] + 1)):
                 cross[coord][coord] += 1
         elif coordinate[0] == coordinate[3] and coordinate[1] == coordinate[2]:
             y = max(coordinate[0], coordinate[1])
@@ -42,6 +42,16 @@ def fillCross(cross, coords):
             for xCoord in range(x, max(coordinate[0], coordinate[2]) + 1):
                 cross[y][xCoord] += 1
                 y += 1
+        elif abs(coordinate[0] - coordinate[2]) == coordinate[1] - coordinate[3]:
+            y = coordinate[1]
+            for xCoord in range(coordinate[0], coordinate[2] + 1):
+                cross[y][xCoord] += 1
+                y -= 1
+        elif coordinate[0] - coordinate[2] == abs(coordinate[1] - coordinate[3]):
+            x = coordinate[0]
+            for yCoord in range(coordinate[1], coordinate[3] + 1):
+                cross[yCoord][x] += 1
+                x -= 1
 
     return cross
 
@@ -50,8 +60,14 @@ def getNumOfPoints(myList):
     myList = correctList(myList)
     cross = getCross(myList)
     cross = fillCross(cross, myList)
-    for el in cross:
-        print(el)
+    """ uncomment if u want to see diagram """
+    # for el in cross:
+    #     for ell in el:
+    #         if ell != 0:
+    #             print(ell, end='')
+    #         else:
+    #             print('.', end='')
+    #     print()
     counter = 0
     for groupIndex in range(len(cross)):
         for index in range(len(cross[groupIndex])):
@@ -66,4 +82,4 @@ if __name__ == '__main__':
         while True:
             myList.append(input())
     except:
-        print(getNumOfPoints(myList))
+        print(f'The number of points is: {getNumOfPoints(myList)}')
