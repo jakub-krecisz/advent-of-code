@@ -44,11 +44,16 @@ def getOxygenRate(myList):
         decimal = decimal + (2 ** i) * oxygen[i]
     return decimal
 
-try:
-    myList = []
-    while True:
-        myList.append(input())
-except:
-    gamma = getGammaRate(myList)
-    print('The power consumption is: ' + str(gamma * (2 ** len(myList[0]) - gamma - 1)))
-    print('Oxygen generator rate is: ' + str(getOxygenRate(myList)))
+
+if __name__ == '__main__':
+    try:
+        myList = []
+        while True:
+            myList.append(input())
+    except:
+        gamma = getGammaRate(myList)
+        """ ---- PART ONE ---- """
+        print('The power consumption is: ' + str(gamma * (2 ** len(myList[0]) - gamma - 1)))
+
+        """ ---- PART TWO ---- """
+        print('Oxygen generator rate is: ' + str(getOxygenRate(myList)))

@@ -1,4 +1,3 @@
-original source: [https://adventofcode.com/2021/day/3](https://adventofcode.com/2021/day/3)
 ## --- Day 3: Binary Diagnostic ---
 The submarine has been making some odd creaking noises, so you ask it to produce a diagnostic report just in case.
 
@@ -75,3 +74,4 @@ Finally, to find the life support rating, multiply the oxygen generator rating (
 
 Use the binary numbers in your diagnostic report to calculate the oxygen generator rating and CO2 scrubber rating, then multiply them together. <em>What is the life support rating of the submarine?</em> (Be sure to represent your answer in decimal, not binary.)
 
+original source: [https://adventofcode.com/2021/day/3](https://adventofcode.com/2021/day/3)
