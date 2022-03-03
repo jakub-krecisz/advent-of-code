@@ -9,19 +9,29 @@ def toInt(list):
 
 def getNumOfFish(fishes, days):
     fishes = toInt(fishes)
+    fishCollection = {}
 
-    for i in range(days):
-        for listIndex in range(len(fishes)):
-            if fishes[listIndex] > 0:
-                fishes[listIndex] -= 1
-            else:
-                fishes[listIndex] = 6
-                fishes.append(8)
+    for i in range(9):
+        fishCollection[i] = 0
 
-    return len(fishes)
+    for fish in fishes:
+        fishCollection[fish] += 1
+
+    for day in range(days):
+        """ Uncomment if you want to see every day values """
+        # print(f'Day {day}', end=' ')
+        # print(fishCollection.values())
+        previousDay = fishCollection[0]
+        for key in fishCollection.keys():
+            if key != 8:
+                fishCollection[key] = fishCollection[key + 1]
+        fishCollection[8] = previousDay
+        fishCollection[6] += previousDay
+
+    return sum(fishCollection.values())
 
 
 if __name__ == '__main__':
     dataFile = open('data.txt')
-    myList = dataFile.read().split(',')
-    print(getNumOfFish(myList, 80))
+    dataInput = dataFile.read().split(',')
+    print(f'Result: {getNumOfFish(dataInput, 256)}')
