@@ -1,4 +1,3 @@
-original source: [https://adventofcode.com/2021/day/4](https://adventofcode.com/2021/day/4)
 ## --- Day 4: Giant Squid ---
 You're already almost 1.5km (almost a mile) below the surface of the ocean, already so deep that you can't see any sunlight. What you <em>can</em> see, however, is a giant squid that has attached itself to the outside of your submarine.
 
@@ -80,3 +79,4 @@ In the above example, the second board is the last to win, which happens after <
 
 Figure out which board will win last. <em>Once it wins, what would its final score be?</em>
 
+original source: [https://adventofcode.com/2021/day/4](https://adventofcode.com/2021/day/4)

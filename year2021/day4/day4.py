@@ -46,9 +46,10 @@ def getScore(myList):
                         return int(getResult(counter[groupIndex], bingoList[groupIndex])) * int(number)
 
 
-try:
-    myList = []
-    while True:
-        myList.append(input())
-except:
-    print(f'Final score is: {getScore(myList)}')
+if __name__ == '__main__':
+    try:
+        myList = []
+        while True:
+            myList.append(input())
+    except:
+        print(f'Final score is: {getScore(myList)}')
