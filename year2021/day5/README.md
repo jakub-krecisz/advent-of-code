@@ -1,4 +1,3 @@
-original source: [https://adventofcode.com/2021/day/5](https://adventofcode.com/2021/day/5)
 ## --- Day 5: Hydrothermal Venture ---
 You come across a field of [hydrothermal vents](https://en.wikipedia.org/wiki/Hydrothermal_vent) on the ocean floor! These vents constantly produce large, opaque clouds, so it would be best to avoid them if possible.
 
@@ -78,3 +77,4 @@ You still need to determine <em>the number of points where at least two lines ov
 
 Consider all of the lines. <em>At how many points do at least two lines overlap?</em>
 
+original source: [https://adventofcode.com/2021/day/5](https://adventofcode.com/2021/day/5)

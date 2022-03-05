@@ -52,7 +52,6 @@ def fillCross(cross, coords):
             for yCoord in range(coordinate[1], coordinate[3] + 1):
                 cross[yCoord][x] += 1
                 x -= 1
-
     return cross
 
 
