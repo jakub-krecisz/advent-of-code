@@ -6,14 +6,20 @@ def getKey(leasFuel, dictionary):
         if leasFuel == value:
             return key
 
+def getFuel(distance):
+    fuel = 0
+    for i in range(distance + 1):
+        fuel += i
+    return fuel
 
 def getPosAndFuel(data):
     maxPosition, minPosition = max(data), min(data)
     positions = {}
     for pos in range(minPosition, maxPosition + 1):
+        print(f'Checking {pos} position of {abs(minPosition - maxPosition)} positions')
         fuel = 0
         for crab in data:
-            fuel += abs(pos - crab)
+            fuel += getFuel(abs(pos - crab))
         positions[pos] = fuel
     leastFuel = min(positions.values())
     bestPosition = getKey(leastFuel, positions)
