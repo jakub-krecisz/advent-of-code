@@ -1,6 +1,5 @@
 """ --- Day 6: Lantern fish --- """
 
-
 def toInt(list):
     for index in range(len(list)):
         list[index] = int(list[index])
