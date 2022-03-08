@@ -1,4 +1,3 @@
-original source: [https://adventofcode.com/2021/day/6](https://adventofcode.com/2021/day/6)
 ## --- Day 6: Lanternfish ---
 The sea floor is getting steeper. Maybe the sleigh keys got carried this way?
 
@@ -66,3 +65,4 @@ After 256 days in the example above, there would be a total of <code><em>2698445
 
 <em>How many lanternfish would there be after 256 days?</em>
 
+original source: [https://adventofcode.com/2021/day/6](https://adventofcode.com/2021/day/6)
