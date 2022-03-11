@@ -1,9 +1,11 @@
 """ --- Day 8: Seven Segment Search --- """
 
+
 def getKey(value, dataTuple):
     for key, val in dataTuple.items():
         if val == value:
             return key
+
 
 def getTopWord(twoLen, threeLen):
     twoLenList, threeLenList = list(twoLen[0]), list(threeLen[0])
@@ -111,7 +113,7 @@ def getValue(data):
         7: [],
     }
     display = {}
-    summary = 0
+    summary = ''
     for index in range(10):
         for length in range(2, 8):
             if int(len(data[index])) == length:
@@ -124,8 +126,8 @@ def getValue(data):
     display[4] = getLeftBottomWord(display, numLen[6], display[3])
     display[6] = getBottomWord(display, numLen[6], display[3])
     for index in range(11, 15):
-        summary += getValueFromStr(data[index], display)
-    return summary
+        summary += str(getValueFromStr(data[index], display))
+    return int(summary)
 
 
 def separateData(data):
@@ -143,7 +145,6 @@ def getSum(data):
     total = 0
     for el in data:
         total += getValue(el)
-        print(getValue(el))
     return total
 
 
@@ -162,4 +163,4 @@ if __name__ == '__main__':
     dataFile = open('data.txt')
     dataInput = dataFile.read()
     print(f'How many times numbers appear: {getNum(dataInput)}')
-    print(getSum(dataInput))
+    print(f'Summary of the values: {getSum(dataInput)}')
