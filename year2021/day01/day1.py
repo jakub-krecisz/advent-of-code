@@ -18,15 +18,14 @@ def secondMeasurement(listOfNumbers):
     return countOfIncrease
 
 
-
 if __name__ == '__main__':
-    try:
-        myList = []
-        while True:
-            myList.append(int(input()))
-    except:
-        """ ---- PART ONE ---- """
-        print(f'Measurements which are larger than the previous one: {measurement(myList)}')
+    dataFile = open('data.txt')
+    dataInput = dataFile.read().split()
+    toInt = map(int, dataInput)
+    intDataInput = list(toInt)
 
-        """ ---- PART TWO ---- """
-        print(f'Three measurements which are larger than the three previous measurements: {secondMeasurement(myList)}')
+    # Part one
+    print(f'Measurements which are larger than the previous one: {measurement(intDataInput)}')
+
+    # Part two
+    print(f'Three measurements which are larger than the three previous measurements: {secondMeasurement(intDataInput)}')
