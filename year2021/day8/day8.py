@@ -1,33 +1,61 @@
 """ --- Day 8: Seven Segment Search --- """
 
-def get1Words(one, seven):
-    list_of_letters = list(one)
-    print(list_of_letters)
+
+def getTopWord(twoLen, threeLen):
+    twoLenList, threeLenList = list(twoLen[0]), list(threeLen[0])
+    for el in threeLenList:
+        if el not in twoLenList:
+            return el
+
+
+def getRightTopWord(twoLen, sixLen):
+    twoLenList = list(twoLen[0])
+    for el in sixLen:
+        if twoLenList[0] not in list(el):
+            return twoLenList[0]
+        elif twoLenList[1] not in list(el):
+            return twoLenList[1]
+
+def getRightBottomWord(twoLen, sixLen):
+    twoLenList = list(twoLen[0])
+    for el in sixLen:
+        if twoLenList[0] not in list(el):
+            return twoLenList[1]
+        elif twoLenList[1] not in list(el):
+            return twoLenList[0]
+
 
 def getValue(data):
-    numbers = {}
+    numLen = {
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+        6: [],
+        7: [],
+    }
     display = {}
-    for i in range(10):
-        if len(data[i]) == 3:
-            numbers[7] = data[i]
-        elif len(data[i]) == 2:
-            numbers[1] = data[i]
-        elif len(data[i]) == 4:
-            numbers[4] = data[i]
-        elif len(data[i]) == 7:
-            numbers[8] = data[i]
-    display[1] = get1Words(numbers[1], numbers[7])
-    print(numbers)
+    for index in range(10):
+        for length in range(2, 8):
+            if int(len(data[index])) == length:
+                numLen[length].append(data[index])
+    display[0] = getTopWord(numLen[2], numLen[3])
+    display[2] = getRightTopWord(numLen[2], numLen[6])
+    display[5] = getRightBottomWord(numLen[2], numLen[6])
+    print(display)
+    print(numLen)
     return 0
+
 
 def separateData(data):
     data = data.split()
     separatedList = []
     for i in range(0, len(data), 15):
         separatedList.append([])
-        for index in range(i, i+15):
-            separatedList[i//15].append(data[index])
+        for index in range(i, i + 15):
+            separatedList[i // 15].append(data[index])
     return separatedList
+
 
 def getSum(data):
     data = separateData(data)
@@ -35,6 +63,7 @@ def getSum(data):
     for el in data:
         total += getValue(el)
     return data
+
 
 def getNum(data):
     data = data.split()
