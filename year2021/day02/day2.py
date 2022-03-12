@@ -29,13 +29,11 @@ def secondMultiply(myList):
 
 
 if __name__ == '__main__':
-    try:
-        myList = []
-        while True:
-            myList.append(input())
-    except:
-        """ ---- PART ONE ---- """
-        print(f'The result of multiplying horizontal position by depth is: {multiply(myList)}')
+    dataFile = open('data.txt')
+    dataInput = dataFile.read().split('\n')
 
-        """ ---- PART TWO ---- """
-        print(f'The second result of multiplying horizontal position by depth is: {secondMultiply(myList)}')
+    # Part one
+    print(f'The result of multiplying horizontal position by depth is: {multiply(dataInput)}')
+
+    # Part two
+    print(f'The second result of multiplying horizontal position by depth is: {secondMultiply(dataInput)}')
