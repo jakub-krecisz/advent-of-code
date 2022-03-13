@@ -35,6 +35,8 @@ def correctList(list):
 def getScore(myList):
     numbers = myList[0].split(',')
     myList.remove('')
+    myList.remove('')
+    myList.remove('')
     bingoList = getBingoList(myList)
     counter = [[[], [], [], [], []] for _ in range(len(bingoList))]
     for number in numbers:
@@ -47,9 +49,6 @@ def getScore(myList):
 
 
 if __name__ == '__main__':
-    try:
-        myList = []
-        while True:
-            myList.append(input())
-    except:
-        print(f'Final score is: {getScore(myList)}')
+    dataFile = open('data.txt')
+    dataInput = dataFile.read().split('\n')
+    print(f'Final score is: {getScore(dataInput)}')
