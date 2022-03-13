@@ -1,3 +1,5 @@
+""" --- Day 5: Hydrothermal Venture --- """
+
 def correctList(list):
     correctedList = []
     for el in list:
@@ -76,9 +78,6 @@ def getNumOfPoints(myList):
 
 
 if __name__ == '__main__':
-    try:
-        myList = []
-        while True:
-            myList.append(input())
-    except:
-        print(f'The number of points is: {getNumOfPoints(myList)}')
+    dataFile = open('data.txt')
+    dataInput = dataFile.read().split('\n')
+    print(f'The number of points is: {getNumOfPoints(dataInput)}')
