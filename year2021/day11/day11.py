@@ -1,6 +1,5 @@
 """ --- Day 11: Dumbo Octopus --- """
 
-
 def inRange(matrix, x, y):
     if x < 0 or y < 0:
         return False
@@ -65,6 +64,19 @@ def getTotalFlashes(matrix):
     return changeCounter
 
 
+def getStep(matrix):
+    syncIter = 0
+    while True:
+        currentChangeNum = startStep(matrix)
+        syncIter += 1
+        if currentChangeNum == 100:
+            break
+    return syncIter
+
+
 if __name__ == "__main__":
     # Part One
     print(f'Total flashes after 100 steps: {getTotalFlashes(getMatrix("data.txt"))}')
+
+    # Part Two
+    print(f'First step during all octopuses flash is: {getStep(getMatrix("data.txt"))}')
