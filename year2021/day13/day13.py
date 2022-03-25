@@ -6,15 +6,24 @@ def getCoords(dataIn):
     for el in dataIn:
         if len(el) == 2:
             coords.append(el)
-    return coords
-
-
-def toInt(coords):
     for row in range(len(coords)):
         coords[row][0] = int(coords[row][0])
         coords[row][1] = int(coords[row][1])
     return coords
 
+
+def getFolds(dataIn):
+    folds = []
+    for index in range(len(dataIn) - 1, 0, -1):
+        if len(dataIn[index]) == 1:
+            folds.append(dataIn[index][0])
+        else:
+            return folds[::-1]
+
+def doYFold(map_, fold):
+    print(map_)
+    print(fold)
+    return 0
 
 def getMaxX(coords):
     maxNum = 0
@@ -33,18 +42,20 @@ def getMaxY(coords):
 
 
 def fillMap(map_, coordinates):
-    print(map_)
     for coord in coordinates:
-        print(map_[coord[0]][coord[1]])
+        map_[coord[1]][coord[0]] = '#'
+    return map_
 
 
 def numOfDots(dataIn):
     dataIn = [a.split(',') for a in dataIn]
     dataIn = [a for a in dataIn if (a != ['fold']) and (a != ['along'])]
     coords = getCoords(dataIn)
-    coords = toInt(coords)
+    folds = getFolds(dataIn)
     map_ = [['.' for _ in range(getMaxX(coords) + 1)] for _ in range(getMaxY(coords) + 1)]
-    fillMap(map_, coords)
+    map_ = fillMap(map_, coords)
+    map_ = doYFold(map_, folds[0])
+    print(map_)
 
 
 if __name__ == "__main__":
