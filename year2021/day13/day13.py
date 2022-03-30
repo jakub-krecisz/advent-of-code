@@ -20,10 +20,30 @@ def getFolds(dataIn):
         else:
             return folds[::-1]
 
+
 def doYFold(map_, fold):
-    print(map_)
-    print(fold)
-    return 0
+    folded = []
+    for row in range(int(fold[2:]) + 1, len(map_)):
+        folded.append(map_[row])
+
+    for row in range(len(folded)):
+        for col in range(len(folded[row])):
+            if folded[::-1][row][col] != map_[row][col]:
+                folded[::-1][row][col] = '#'
+    return folded[::-1]
+
+
+def doXFold(map_, fold):
+    folded = []
+    for row in map_:
+        folded.append(row[int(fold[-1]) + 1:])
+    folded = [row[::-1] for row in folded]
+    for row in range(len(folded)):
+        for col in range(len(folded[row])):
+            if folded[row][col] != map_[row][col]:
+                folded[row][col] = '#'
+    return folded
+
 
 def getMaxX(coords):
     maxNum = 0
@@ -54,10 +74,20 @@ def numOfDots(dataIn):
     folds = getFolds(dataIn)
     map_ = [['.' for _ in range(getMaxX(coords) + 1)] for _ in range(getMaxY(coords) + 1)]
     map_ = fillMap(map_, coords)
+    # for fold in folds:
+    #     if fold[:1] == 'y':
+    #         map_ = doYFold(map_, fold)
+    #     else:
+    #         map_ = doXFold(map_, fold)
     map_ = doYFold(map_, folds[0])
-    print(map_)
+    counter = 0
+    for row in range(len(map_)):
+        for col in range(len(map_[row])):
+            if map_[row][col] == '#':
+                counter += 1
+    return counter
 
 
 if __name__ == "__main__":
-    dataInput = open('test_data.txt').read().split()
+    dataInput = open('data.txt').read().split()
     print(numOfDots(dataInput))
