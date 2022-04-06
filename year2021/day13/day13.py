@@ -36,7 +36,7 @@ def doYFold(map_, fold):
 def doXFold(map_, fold):
     folded = []
     for row in map_:
-        folded.append(row[int(fold[-1]) + 1:])
+        folded.append(row[int(fold[2:]) + 1:])
     folded = [row[::-1] for row in folded]
     for row in range(len(folded)):
         for col in range(len(folded[row])):
@@ -69,17 +69,14 @@ def fillMap(map_, coordinates):
 
 def numOfDots(dataIn):
     dataIn = [a.split(',') for a in dataIn]
+
     dataIn = [a for a in dataIn if (a != ['fold']) and (a != ['along'])]
     coords = getCoords(dataIn)
     folds = getFolds(dataIn)
     map_ = [['.' for _ in range(getMaxX(coords) + 1)] for _ in range(getMaxY(coords) + 1)]
     map_ = fillMap(map_, coords)
-    # for fold in folds:
-    #     if fold[:1] == 'y':
-    #         map_ = doYFold(map_, fold)
-    #     else:
-    #         map_ = doXFold(map_, fold)
-    map_ = doYFold(map_, folds[0])
+
+    map_ = doXFold(map_, folds[0])
     counter = 0
     for row in range(len(map_)):
         for col in range(len(map_[row])):
@@ -87,7 +84,35 @@ def numOfDots(dataIn):
                 counter += 1
     return counter
 
+    # for fold in folds:
+    #     print(map_)
+    #     if fold[:1] == 'y':
+    #         map_ = doYFold(map_, fold)
+    #     else:
+    #         map_ = doXFold(map_, fold)
+
+
+def doAllFolding(dataIn):
+    dataIn = [a.split(',') for a in dataIn]
+
+    dataIn = [a for a in dataIn if (a != ['fold']) and (a != ['along'])]
+    coords = getCoords(dataIn)
+    folds = getFolds(dataIn)
+    map_ = [['.' for _ in range(getMaxX(coords) + 1)] for _ in range(getMaxY(coords) + 1)]
+    map_ = fillMap(map_, coords)
+
+    for fold in folds:
+        if fold[:1] == 'y':
+            map_ = doYFold(map_, fold)
+        else:
+            map_ = doXFold(map_, fold)
+
+    for row in map_:
+        print(row)
+
 
 if __name__ == "__main__":
     dataInput = open('data.txt').read().split()
-    print(numOfDots(dataInput))
+    print(f'Number of visible dots: {numOfDots(dataInput)}')
+    print('The Code after all fold')
+    doAllFolding(dataInput)
