@@ -20,11 +20,13 @@ def getLeastCommon(polymerTemplate):
     words = set(polymerTemplate)
     return min(polymerTemplate.count(word) for word in words)
 
+
 def getPairs(pairInsertions):
     pairs = {}
     for pair in pairInsertions.keys():
         pairs[pair] = 0
     return pairs
+
 
 def getPairIntersection(pairs, pairInsertions):
     newPairs = []
@@ -32,7 +34,6 @@ def getPairIntersection(pairs, pairInsertions):
         newPairs.append(pair[0] + pairInsertions[pair])
         newPairs.append(pairInsertions[pair] + pair[1])
     pairs.clear()
-
     for el in newPairs:
         if el not in pairs:
             pairs[el] = 1
@@ -40,6 +41,7 @@ def getPairIntersection(pairs, pairInsertions):
             pairs[el] += 1
 
     return pairs
+
 
 def getSecondResult(dataInput, steps):
     polymerTemplate = dataInput[0]
@@ -64,9 +66,6 @@ def getSecondResult(dataInput, steps):
     numOfLetters[lastWord] += 1
 
     return max(numOfLetters.values()) - min(numOfLetters.values())
-
-
-
 
 
 def getResult(dataIn, steps):
